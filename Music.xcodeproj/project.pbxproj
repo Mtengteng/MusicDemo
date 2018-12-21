@@ -7,27 +7,60 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9BB0C3102F05354CA07AAFD6 /* libPods-Music.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE47D40AC77076C1439F7468 /* libPods-Music.a */; };
+		9E1D260821CC8B9100935107 /* xiazai.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1D260721CC8B9100935107 /* xiazai.png */; };
+		9E1D260C21CC915900935107 /* MDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1D260B21CC915900935107 /* MDownloadManager.m */; };
+		9E1D261C21CCC3B000935107 /* Music.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E1D261A21CCC3B000935107 /* Music.xcdatamodeld */; };
+		9E1D262421CCCAB900935107 /* tingzhi.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1D262321CCCAB900935107 /* tingzhi.png */; };
+		9E1D262721CCCFAA00935107 /* DownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1D262621CCCFAA00935107 /* DownloadModel.m */; };
+		9E1D262921CCD23400935107 /* ic_pending.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1D262821CCD23400935107 /* ic_pending.png */; };
+		9E1D262B21CCD27400935107 /* bofang.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1D262A21CCD27400935107 /* bofang.png */; };
+		9E1D262D21CCD32A00935107 /* shibai.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1D262C21CCD32A00935107 /* shibai.png */; };
+		9E6890A921BA5EB800CD92C7 /* MRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E6890A821BA5EB800CD92C7 /* MRootViewController.m */; };
 		9E7EC4E921BA41F600BB8276 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7EC4E821BA41F600BB8276 /* AppDelegate.m */; };
-		9E7EC4EC21BA41F600BB8276 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7EC4EB21BA41F600BB8276 /* ViewController.m */; };
 		9E7EC4EF21BA41F600BB8276 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EC4ED21BA41F600BB8276 /* Main.storyboard */; };
-		9E7EC4F221BA41F600BB8276 /* Music.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E7EC4F021BA41F600BB8276 /* Music.xcdatamodeld */; };
 		9E7EC4F421BA41F700BB8276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EC4F321BA41F700BB8276 /* Assets.xcassets */; };
 		9E7EC4F721BA41F700BB8276 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EC4F521BA41F700BB8276 /* LaunchScreen.storyboard */; };
 		9E7EC4FA21BA41F700BB8276 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7EC4F921BA41F700BB8276 /* main.m */; };
+		9EEAE53421BFD20A00C10298 /* BWBaseReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEAE52A21BFD20A00C10298 /* BWBaseReq.m */; };
+		9EEAE53521BFD20A00C10298 /* BWNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEAE52C21BFD20A00C10298 /* BWNetManager.m */; };
+		9EEAE53721BFD20A00C10298 /* BWBaseResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEAE53221BFD20A00C10298 /* BWBaseResp.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		51A9616C7D8B36A386E1DAC4 /* Pods-Music.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Music/Pods-Music.debug.xcconfig"; sourceTree = "<group>"; };
+		9E1D260721CC8B9100935107 /* xiazai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiazai.png; sourceTree = "<group>"; };
+		9E1D260A21CC915900935107 /* MDownloadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDownloadManager.h; sourceTree = "<group>"; };
+		9E1D260B21CC915900935107 /* MDownloadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDownloadManager.m; sourceTree = "<group>"; };
+		9E1D261B21CCC3B000935107 /* Music.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Music.xcdatamodel; sourceTree = "<group>"; };
+		9E1D262321CCCAB900935107 /* tingzhi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tingzhi.png; sourceTree = "<group>"; };
+		9E1D262521CCCFAA00935107 /* DownloadModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadModel.h; sourceTree = "<group>"; };
+		9E1D262621CCCFAA00935107 /* DownloadModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadModel.m; sourceTree = "<group>"; };
+		9E1D262821CCD23400935107 /* ic_pending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_pending.png; sourceTree = "<group>"; };
+		9E1D262A21CCD27400935107 /* bofang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bofang.png; sourceTree = "<group>"; };
+		9E1D262C21CCD32A00935107 /* shibai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shibai.png; sourceTree = "<group>"; };
+		9E6890A721BA5EB800CD92C7 /* MRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRootViewController.h; sourceTree = "<group>"; };
+		9E6890A821BA5EB800CD92C7 /* MRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MRootViewController.m; sourceTree = "<group>"; };
 		9E7EC4E421BA41F600BB8276 /* Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Music.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7EC4E721BA41F600BB8276 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9E7EC4E821BA41F600BB8276 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9E7EC4EA21BA41F600BB8276 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9E7EC4EB21BA41F600BB8276 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9E7EC4EE21BA41F600BB8276 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9E7EC4F121BA41F600BB8276 /* Music.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Music.xcdatamodel; sourceTree = "<group>"; };
 		9E7EC4F321BA41F700BB8276 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E7EC4F621BA41F700BB8276 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E7EC4F821BA41F700BB8276 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E7EC4F921BA41F700BB8276 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9E7EC50621BA43AE00BB8276 /* Music.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Music.pch; sourceTree = "<group>"; };
+		9E7EC50721BA44DF00BB8276 /* MusicConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicConfig.h; sourceTree = "<group>"; };
+		9EEAE52821BFD20A00C10298 /* BWBaseReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWBaseReq.h; sourceTree = "<group>"; };
+		9EEAE52A21BFD20A00C10298 /* BWBaseReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWBaseReq.m; sourceTree = "<group>"; };
+		9EEAE52C21BFD20A00C10298 /* BWNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWNetManager.m; sourceTree = "<group>"; };
+		9EEAE52D21BFD20A00C10298 /* BWNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWNetManager.h; sourceTree = "<group>"; };
+		9EEAE53021BFD20A00C10298 /* BWBaseResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWBaseResp.h; sourceTree = "<group>"; };
+		9EEAE53221BFD20A00C10298 /* BWBaseResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWBaseResp.m; sourceTree = "<group>"; };
+		9EF1228821C09A8A001BEBAA /* NetHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetHeader.h; sourceTree = "<group>"; };
+		9EF1228921C09AC5001BEBAA /* HttpsUrls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpsUrls.h; sourceTree = "<group>"; };
+		B60A57A0C6B727ED2981AE8A /* Pods-Music.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music.release.xcconfig"; path = "Pods/Target Support Files/Pods-Music/Pods-Music.release.xcconfig"; sourceTree = "<group>"; };
+		BE47D40AC77076C1439F7468 /* libPods-Music.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Music.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +68,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BB0C3102F05354CA07AAFD6 /* libPods-Music.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		586A6242538CC8EF1BF6D145 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE47D40AC77076C1439F7468 /* libPods-Music.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E1D260921CC913D00935107 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				9E1D260A21CC915900935107 /* MDownloadManager.h */,
+				9E1D260B21CC915900935107 /* MDownloadManager.m */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		9E1D261321CCC17A00935107 /* DownloadModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E1D262521CCCFAA00935107 /* DownloadModel.h */,
+				9E1D262621CCCFAA00935107 /* DownloadModel.m */,
+			);
+			path = DownloadModel;
+			sourceTree = "<group>";
+		};
 		9E7EC4DB21BA41F600BB8276 = {
 			isa = PBXGroup;
 			children = (
 				9E7EC4E621BA41F600BB8276 /* Music */,
 				9E7EC4E521BA41F600BB8276 /* Products */,
+				BADE1226B0E271AD7F567E11 /* Pods */,
+				586A6242538CC8EF1BF6D145 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,18 +122,117 @@
 		9E7EC4E621BA41F600BB8276 /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				9E1D261A21CCC3B000935107 /* Music.xcdatamodeld */,
+				9E7EC50421BA436100BB8276 /* Utils */,
+				9E7EC50021BA426400BB8276 /* Models */,
+				9E7EC50221BA426400BB8276 /* Views */,
+				9E7EC50321BA426400BB8276 /* Controllers */,
+				9E7EC50121BA426400BB8276 /* Sources */,
 				9E7EC4E721BA41F600BB8276 /* AppDelegate.h */,
 				9E7EC4E821BA41F600BB8276 /* AppDelegate.m */,
-				9E7EC4EA21BA41F600BB8276 /* ViewController.h */,
-				9E7EC4EB21BA41F600BB8276 /* ViewController.m */,
 				9E7EC4ED21BA41F600BB8276 /* Main.storyboard */,
 				9E7EC4F321BA41F700BB8276 /* Assets.xcassets */,
 				9E7EC4F521BA41F700BB8276 /* LaunchScreen.storyboard */,
 				9E7EC4F821BA41F700BB8276 /* Info.plist */,
 				9E7EC4F921BA41F700BB8276 /* main.m */,
-				9E7EC4F021BA41F600BB8276 /* Music.xcdatamodeld */,
 			);
 			path = Music;
+			sourceTree = "<group>";
+		};
+		9E7EC50021BA426400BB8276 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9E1D261321CCC17A00935107 /* DownloadModel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9E7EC50121BA426400BB8276 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9E1D262C21CCD32A00935107 /* shibai.png */,
+				9E1D262A21CCD27400935107 /* bofang.png */,
+				9E1D262321CCCAB900935107 /* tingzhi.png */,
+				9E1D262821CCD23400935107 /* ic_pending.png */,
+				9E1D260721CC8B9100935107 /* xiazai.png */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		9E7EC50221BA426400BB8276 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9E7EC50321BA426400BB8276 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9E1D260921CC913D00935107 /* Download */,
+				9EEAE52621BFD20A00C10298 /* Network */,
+				9E6890A721BA5EB800CD92C7 /* MRootViewController.h */,
+				9E6890A821BA5EB800CD92C7 /* MRootViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9E7EC50421BA436100BB8276 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9E7EC50621BA43AE00BB8276 /* Music.pch */,
+				9E7EC50721BA44DF00BB8276 /* MusicConfig.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		9EEAE52621BFD20A00C10298 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9EEAE52D21BFD20A00C10298 /* BWNetManager.h */,
+				9EEAE52C21BFD20A00C10298 /* BWNetManager.m */,
+				9EEAE52721BFD20A00C10298 /* BWReq */,
+				9EEAE52E21BFD20A00C10298 /* BWResp */,
+				9EF1228721C09A69001BEBAA /* NetConfig */,
+			);
+			name = Network;
+			path = Music/Models/Network;
+			sourceTree = SOURCE_ROOT;
+		};
+		9EEAE52721BFD20A00C10298 /* BWReq */ = {
+			isa = PBXGroup;
+			children = (
+				9EEAE52821BFD20A00C10298 /* BWBaseReq.h */,
+				9EEAE52A21BFD20A00C10298 /* BWBaseReq.m */,
+			);
+			path = BWReq;
+			sourceTree = "<group>";
+		};
+		9EEAE52E21BFD20A00C10298 /* BWResp */ = {
+			isa = PBXGroup;
+			children = (
+				9EEAE53021BFD20A00C10298 /* BWBaseResp.h */,
+				9EEAE53221BFD20A00C10298 /* BWBaseResp.m */,
+			);
+			path = BWResp;
+			sourceTree = "<group>";
+		};
+		9EF1228721C09A69001BEBAA /* NetConfig */ = {
+			isa = PBXGroup;
+			children = (
+				9EF1228821C09A8A001BEBAA /* NetHeader.h */,
+				9EF1228921C09AC5001BEBAA /* HttpsUrls.h */,
+			);
+			path = NetConfig;
+			sourceTree = "<group>";
+		};
+		BADE1226B0E271AD7F567E11 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				51A9616C7D8B36A386E1DAC4 /* Pods-Music.debug.xcconfig */,
+				B60A57A0C6B727ED2981AE8A /* Pods-Music.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -81,9 +242,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E7EC4FD21BA41F700BB8276 /* Build configuration list for PBXNativeTarget "Music" */;
 			buildPhases = (
+				388B94A0B44C002FC9A959B7 /* [CP] Check Pods Manifest.lock */,
 				9E7EC4E021BA41F600BB8276 /* Sources */,
 				9E7EC4E121BA41F600BB8276 /* Frameworks */,
 				9E7EC4E221BA41F600BB8276 /* Resources */,
+				31AF59FD7DA2CD74C65088EE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,22 +295,71 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E7EC4F721BA41F700BB8276 /* LaunchScreen.storyboard in Resources */,
+				9E1D262921CCD23400935107 /* ic_pending.png in Resources */,
 				9E7EC4F421BA41F700BB8276 /* Assets.xcassets in Resources */,
+				9E1D262B21CCD27400935107 /* bofang.png in Resources */,
 				9E7EC4EF21BA41F600BB8276 /* Main.storyboard in Resources */,
+				9E1D262D21CCD32A00935107 /* shibai.png in Resources */,
+				9E1D260821CC8B9100935107 /* xiazai.png in Resources */,
+				9E1D262421CCCAB900935107 /* tingzhi.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31AF59FD7DA2CD74C65088EE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Music/Pods-Music-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Music/Pods-Music-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		388B94A0B44C002FC9A959B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Music-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9E7EC4E021BA41F600BB8276 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E7EC4EC21BA41F600BB8276 /* ViewController.m in Sources */,
+				9E6890A921BA5EB800CD92C7 /* MRootViewController.m in Sources */,
 				9E7EC4E921BA41F600BB8276 /* AppDelegate.m in Sources */,
+				9EEAE53421BFD20A00C10298 /* BWBaseReq.m in Sources */,
+				9E1D261C21CCC3B000935107 /* Music.xcdatamodeld in Sources */,
 				9E7EC4FA21BA41F700BB8276 /* main.m in Sources */,
-				9E7EC4F221BA41F600BB8276 /* Music.xcdatamodeld in Sources */,
+				9EEAE53721BFD20A00C10298 /* BWBaseResp.m in Sources */,
+				9E1D260C21CC915900935107 /* MDownloadManager.m in Sources */,
+				9EEAE53521BFD20A00C10298 /* BWNetManager.m in Sources */,
+				9E1D262721CCCFAA00935107 /* DownloadModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +436,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -277,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -287,35 +499,41 @@
 		};
 		9E7EC4FE21BA41F700BB8276 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51A9616C7D8B36A386E1DAC4 /* Pods-Music.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N6Q3W5CHBZ;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Music/Utils/Music.pch";
 				INFOPLIST_FILE = Music/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mateng.Music;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beiwaionline.Music;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		9E7EC4FF21BA41F700BB8276 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B60A57A0C6B727ED2981AE8A /* Pods-Music.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N6Q3W5CHBZ;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Music/Utils/Music.pch";
 				INFOPLIST_FILE = Music/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mateng.Music;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beiwaionline.Music;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -343,12 +561,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		9E7EC4F021BA41F600BB8276 /* Music.xcdatamodeld */ = {
+		9E1D261A21CCC3B000935107 /* Music.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9E7EC4F121BA41F600BB8276 /* Music.xcdatamodel */,
+				9E1D261B21CCC3B000935107 /* Music.xcdatamodel */,
 			);
-			currentVersion = 9E7EC4F121BA41F600BB8276 /* Music.xcdatamodel */;
+			currentVersion = 9E1D261B21CCC3B000935107 /* Music.xcdatamodel */;
 			path = Music.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
