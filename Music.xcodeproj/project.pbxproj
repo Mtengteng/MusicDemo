@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9BB0C3102F05354CA07AAFD6 /* libPods-Music.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE47D40AC77076C1439F7468 /* libPods-Music.a */; };
+		9E08834D21CD03BB007F02E6 /* DTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E08834C21CD03BB007F02E6 /* DTableViewCell.m */; };
 		9E1D260821CC8B9100935107 /* xiazai.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1D260721CC8B9100935107 /* xiazai.png */; };
 		9E1D260C21CC915900935107 /* MDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1D260B21CC915900935107 /* MDownloadManager.m */; };
 		9E1D261C21CCC3B000935107 /* Music.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E1D261A21CCC3B000935107 /* Music.xcdatamodeld */; };
@@ -29,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		51A9616C7D8B36A386E1DAC4 /* Pods-Music.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Music/Pods-Music.debug.xcconfig"; sourceTree = "<group>"; };
+		9E08834B21CD03BB007F02E6 /* DTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTableViewCell.h; sourceTree = "<group>"; };
+		9E08834C21CD03BB007F02E6 /* DTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTableViewCell.m; sourceTree = "<group>"; };
 		9E1D260721CC8B9100935107 /* xiazai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiazai.png; sourceTree = "<group>"; };
 		9E1D260A21CC915900935107 /* MDownloadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDownloadManager.h; sourceTree = "<group>"; };
 		9E1D260B21CC915900935107 /* MDownloadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDownloadManager.m; sourceTree = "<group>"; };
@@ -97,6 +100,8 @@
 			children = (
 				9E1D262521CCCFAA00935107 /* DownloadModel.h */,
 				9E1D262621CCCFAA00935107 /* DownloadModel.m */,
+				9E08834B21CD03BB007F02E6 /* DTableViewCell.h */,
+				9E08834C21CD03BB007F02E6 /* DTableViewCell.m */,
 			);
 			path = DownloadModel;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				9EEAE53721BFD20A00C10298 /* BWBaseResp.m in Sources */,
 				9E1D260C21CC915900935107 /* MDownloadManager.m in Sources */,
 				9EEAE53521BFD20A00C10298 /* BWNetManager.m in Sources */,
+				9E08834D21CD03BB007F02E6 /* DTableViewCell.m in Sources */,
 				9E1D262721CCCFAA00935107 /* DownloadModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

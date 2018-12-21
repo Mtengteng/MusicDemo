@@ -9,6 +9,7 @@
 #import "MRootViewController.h"
 #import "MDownloadManager.h"
 #import "DownloadModel.h"
+#import "DTableViewCell.h"
 
 @interface MRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -92,98 +93,44 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DefineWeakSelf;
     static NSString *cellId = @"cellId";
     
     DownloadModel *model = [self.dataArray objectAtIndex:indexPath.row];
     
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    DTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        
+        cell = [[DTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    for (id v in cell.contentView.subviews)
-        [v removeFromSuperview];
-    
-    UIButton *downloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    downloadBtn.tag = 1000+indexPath.row;
-    //        [downloadBtn setImage:[UIImage imageNamed:@"xiazai.png"] forState:UIControlStateNormal];
-    [downloadBtn addTarget:self action:@selector(downloadAction:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.contentView addSubview:downloadBtn];
-    
-    [downloadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(cell.contentView.mas_right).with.offset(-20);
-        make.centerY.equalTo(cell.contentView);
-        make.width.equalTo(@25);
-        make.height.equalTo(@25);
+
+    [cell setDownloadModel:model];
+    [cell setDownloadActionBlock:^(DownloadModel * _Nonnull model, UIButton * _Nonnull button) {
+        [button setImage:[UIImage imageNamed:@"tingzhi.png"] forState:UIControlStateNormal];
+        [weakSelf downloadAction:indexPath];
     }];
-    
-    UIProgressView *proView = [[UIProgressView alloc] init];
-    proView.tag = 2000+indexPath.row;
-    proView.tintColor = [UIColor greenColor];
-    [proView setProgress:model.progress];
-    [cell.contentView addSubview:proView];
-    
-    [proView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@90);
-        make.right.equalTo(@-90);
-        make.centerY.equalTo(cell.contentView);
-        
-    }];
-    
-    
-    UIImage *img;
-    switch (model.downloadState) {
-        case downloadState_begin:
-            img = [UIImage imageNamed:@"xiazai.png"];
-            break;
-        case downloadState_start:
-            img = [UIImage imageNamed:@"tingzhi.png"];
-            break;
-        case downloadState_pause:
-            img = [UIImage imageNamed:@"xiazai.png"];
-
-            break;
-        case downloadState_failed:
-            img = [UIImage imageNamed:@"shibai.png"];
-
-            break;
-        case downloadState_finished:
-            img = [UIImage imageNamed:@"bofang.png"];
-
-            break;
-        default:
-            img = [UIImage imageNamed:@"ic_pending.png"];
-
-            break;
-    }
-    [downloadBtn setImage:img forState:UIControlStateNormal];
-    cell.textLabel.text = model.name;
-
     return cell;
     
 }
 
-- (void)downloadAction:(id)sender
+- (void)downloadAction:(NSIndexPath *)indexPath
 {
-    UIButton *button = (UIButton *)sender;
-    [button setImage:[UIImage imageNamed:@"tingzhi.png"] forState:UIControlStateNormal];
 
     DefineWeakSelf;
     
-    [downloadMan addDownloadQueueWithDownloadModel:[self.dataArray objectAtIndex:button.tag - 1000]];
+    [downloadMan addDownloadQueueWithDownloadModel:[self.dataArray objectAtIndex:indexPath.row]];
     
     downloadMan.downloadPro = ^(DownloadModel *model) {
         
         for (NSInteger i = 0; i<weakSelf.dataArray.count;i++) {
             DownloadModel *allModel = weakSelf.dataArray[i];
-            
+
             if ([allModel.name isEqualToString:model.name]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UIProgressView *pro = (UIProgressView *)[weakSelf.tableView viewWithTag:i+2000];
-                    [pro setProgress:model.progress];
+                    NSIndexPath *path=[NSIndexPath indexPathForRow:i inSection:0];
+                    DTableViewCell *cell = [weakSelf.tableView cellForRowAtIndexPath:path];
+                    [cell updateProgress:model.progress];
                 });
-               
+
             }
         }
     };
