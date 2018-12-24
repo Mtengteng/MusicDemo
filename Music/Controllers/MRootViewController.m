@@ -56,11 +56,11 @@
     
     
     [self.view addSubview:self.tableView];
-    
+
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    
+
     downloadMan = [MDownloadManager shareInstances];
 
     

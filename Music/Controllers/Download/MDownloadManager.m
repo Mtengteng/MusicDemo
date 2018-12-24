@@ -34,8 +34,10 @@
 {
     if (self = [super init]) {
         
-        seQueue = dispatch_queue_create("com.beiwai", DISPATCH_QUEUE_SERIAL);
+        
+//        seQueue = dispatch_queue_create("com.beiwai", DISPATCH_QUEUE_SERIAL);
        
+        conQueue = dispatch_queue_create("com.beiwai", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;
 }
@@ -60,7 +62,7 @@
 
     DefineWeakSelf;
    
-    dispatch_async(seQueue, ^{
+    dispatch_async(conQueue, ^{
         // 这里放异步执行任务代码
         
         [weakSelf startDownloadWithDownloadModel:model];
