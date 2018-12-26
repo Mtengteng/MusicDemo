@@ -10,6 +10,8 @@
 #import "MDownloadManager.h"
 #import "DownloadModel.h"
 #import "DTableViewCell.h"
+#import "DownModel+CoreDataClass.h"
+#import "AppDelegate.h"
 
 @interface MRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -37,17 +39,49 @@
 {
     if (!_dataArray) {
         _dataArray = [[NSMutableArray alloc] init];
+        AppDelegate * appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         
-        for (NSInteger i = 0; i < 50; i++) {
-            DownloadModel *model = [[DownloadModel alloc] init];
-            model.name = [NSString stringWithFormat:@"%ld.mp4",i];
-            model.urlStr = @"https://media.w3.org/2010/05/sintel/trailer.mp4";
-            model.progress = 0;
-            model.downloadState = downloadState_begin;
-            model.downloadId = [NSString stringWithFormat:@"%ld.mp4",i];
-            [_dataArray addObject:model];
+        NSPersistentContainer * container = appDelegate.persistentContainer;
+        NSManagedObjectContext *context = container.viewContext;
+        //创建查询请求
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"DownModel"];
+        //查询条件
+        NSPredicate *pre = [NSPredicate predicateWithFormat:@"downloadState = 0"];
+        request.predicate = pre;
+        
+        // 从第几页开始显示
+        // 通过这个属性实现分页
+        //request.fetchOffset = 0;
+        // 每页显示多少条数据
+        //request.fetchLimit = 6;
+        
+        //发送查询请求
+       _dataArray = [[context executeFetchRequest:request error:nil] copy];
+        
+       
+//        for (NSInteger i = 0; i < 50; i++) {
+//            DownModel *model = [NSEntityDescription  insertNewObjectForEntityForName:@"DownModel"  inManagedObjectContext:container.viewContext];
+//
+////            DownloadModel *model = [[DownloadModel alloc] init];
+//            model.name = [NSString stringWithFormat:@"%ld.mp4",i];
+//            model.urlStr = @"https://media.w3.org/2010/05/sintel/trailer.mp4";
+//            model.progress = 0;
+//            model.downloadState = downloadState_begin;
+//            model.downloadId = [NSString stringWithFormat:@"%ld.mp4",i];
+//
+//            //   3.保存插入的数据
+//            NSError *error = nil;
+//            if ([container.viewContext save:&error]) {
+//                NSLog(@"数据插入到数据库成功");
+//            }else{
+//                NSLog(@"数据插入到数据库失败");
+//
+//            }
+        
+           
+//            [_dataArray addObject:model];
         }
-    }
+    
     return _dataArray;
 }
 - (instancetype)init
