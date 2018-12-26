@@ -41,19 +41,38 @@
         for (NSInteger i = 0; i < 50; i++) {
             DownloadModel *model = [[DownloadModel alloc] init];
             model.name = [NSString stringWithFormat:@"%ld.mp4",i];
-            model.filePath = @"https://media.w3.org/2010/05/sintel/trailer.mp4";
+            model.urlStr = @"https://media.w3.org/2010/05/sintel/trailer.mp4";
             model.progress = 0;
-            model.downloadState = 0;
+            model.downloadState = downloadState_begin;
             model.downloadId = [NSString stringWithFormat:@"%ld.mp4",i];
             [_dataArray addObject:model];
         }
     }
     return _dataArray;
 }
+- (instancetype)init
+{
+    if (self = [super init]) {
+        downloadMan = [MDownloadManager shareInstances];
+       
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    rightBtn.frame = CGRectMake(SCREEN_WIDTH - ADAPTATION_X(20), 0,70, 30);
+//    [rightBtn setTitle:@"已完成" forState:UIControlStateNormal];
+//    [rightBtn setTitleColor:BWColor(92, 164, 236, 1) forState:UIControlStateNormal];
+//    rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+//    [rightBtn addTarget:self action:@selector(gotoMyDownload:) forControlEvents:UIControlEventTouchUpInside];
+//    rightBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
+//
+//    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+//    self.navigationItem.rightBarButtonItem = rightBar;
     
     [self.view addSubview:self.tableView];
 
@@ -61,31 +80,41 @@
         make.edges.equalTo(self.view);
     }];
 
-    downloadMan = [MDownloadManager shareInstances];
-
-    
-    
-//    //串型队列
-//    dispatch_queue_t queue = dispatch_queue_create("com.beiwai", DISPATCH_QUEUE_SERIAL);
-//
-//    // 异步执行任务创建方法
-//    dispatch_async(queue, ^{
-//        // 这里放异步执行任务代码
-//
-//
-//    });
-//
-//    //并行队列
-//    dispatch_queue_t conQueue = dispatch_queue_create("com.beiwai", DISPATCH_QUEUE_CONCURRENT);
-//
-//    // 异步执行任务创建方法
-//    dispatch_async(conQueue, ^{
-//        // 这里放异步执行任务代码
-//
-//
-//    });
 }
-
+- (void)downloadAction:(NSIndexPath *)indexPath
+{
+    
+    DefineWeakSelf;
+    
+    [downloadMan addDownloadQueueWithDownloadModel:[self.dataArray objectAtIndex:indexPath.row]];
+    
+    downloadMan.downloadPro = ^(DownloadModel *model) {
+        
+        for (NSInteger i = 0; i<weakSelf.dataArray.count;i++) {
+            DownloadModel *allModel = weakSelf.dataArray[i];
+            
+            if ([allModel.name isEqualToString:model.name]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                    DTableViewCell *cell = [weakSelf.tableView cellForRowAtIndexPath:path];
+                    [cell updateProgress:model.progress];
+                });
+                
+            }
+        }
+    };
+    downloadMan.downloadFinised = ^(DownloadModel * _Nonnull model) {
+        [weakSelf.tableView reloadData];
+    };
+    downloadMan.downloadFailed = ^(DownloadModel * _Nonnull model) {
+        [weakSelf.tableView reloadData];
+        
+    };
+    
+    
+}
+#pragma mark-
+#pragma mark- UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.dataArray.count;
@@ -105,45 +134,60 @@
 
     [cell setDownloadModel:model];
     [cell setDownloadActionBlock:^(DownloadModel * _Nonnull model, UIButton * _Nonnull button) {
-        [button setImage:[UIImage imageNamed:@"tingzhi.png"] forState:UIControlStateNormal];
-        [weakSelf downloadAction:indexPath];
+        
+        switch (model.downloadState) {
+            case downloadState_begin:
+                [button setImage:[UIImage imageNamed:@"tingzhi.png"] forState:UIControlStateNormal];
+                [weakSelf downloadAction:indexPath];
+                break;
+            case downloadState_start:
+                [button setImage:[UIImage imageNamed:@"xiazai.png"] forState:UIControlStateNormal];
+                
+                [self->downloadMan downloadPause:model];
+                break;
+            case downloadState_pause:
+                [button setImage:[UIImage imageNamed:@"tingzhi.png"] forState:UIControlStateNormal];
+                
+                [self->downloadMan downloadResume:model];
+                break;
+                
+                
+            default:
+                break;
+        }
+        
+//        if (model.downloadState == downloadState_begin) {
+//            [button setImage:[UIImage imageNamed:@"tingzhi.png"] forState:UIControlStateNormal];
+//            [weakSelf downloadAction:indexPath];
+//        }
+//        if (model.downloadState == downloadState_start) {
+//            [button setImage:[UIImage imageNamed:@"xiazai.png"] forState:UIControlStateNormal];
+//
+//            [self->downloadMan downloadPause:model];
+//
+//        }
+//        if (model.downloadState == downloadState_pause) {
+//            [button setImage:[UIImage imageNamed:@"tingzhi.png"] forState:UIControlStateNormal];
+//
+//            [self->downloadMan downloadResume:model];
+//        }
+//        if (model.downloadState == downloadState_finished) {
+////            [weakSelf downloadPause:indexPath];
+//        }
+        
+       
     }];
     return cell;
     
 }
-
-- (void)downloadAction:(NSIndexPath *)indexPath
+#pragma mark-
+#pragma mark- UITableDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    DefineWeakSelf;
-    
-    [downloadMan addDownloadQueueWithDownloadModel:[self.dataArray objectAtIndex:indexPath.row]];
-    
-    downloadMan.downloadPro = ^(DownloadModel *model) {
-        
-        for (NSInteger i = 0; i<weakSelf.dataArray.count;i++) {
-            DownloadModel *allModel = weakSelf.dataArray[i];
-
-            if ([allModel.name isEqualToString:model.name]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    NSIndexPath *path=[NSIndexPath indexPathForRow:i inSection:0];
-                    DTableViewCell *cell = [weakSelf.tableView cellForRowAtIndexPath:path];
-                    [cell updateProgress:model.progress];
-                });
-
-            }
-        }
-    };
-    downloadMan.downloadFinised = ^(DownloadModel * _Nonnull model) {
-        [weakSelf.tableView reloadData];
-    };
-    downloadMan.downloadFailed = ^(DownloadModel * _Nonnull model) {
-        [weakSelf.tableView reloadData];
-
-    };
-    
-    
+    return 44;
 }
+
+
 
 
 @end

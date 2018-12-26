@@ -27,6 +27,10 @@ typedef void(^downloadFailedBlock)(DownloadModel *model);
 
 - (void)addDownloadQueueWithDownloadModel:(DownloadModel *)model;
 
+- (void)downloadPause:(DownloadModel *)model;
+
+- (void)downloadResume:(DownloadModel *)model;
+
 
 @end
 

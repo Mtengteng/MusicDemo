@@ -24,6 +24,7 @@ typedef enum downloadState
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *filePath;
 @property (nullable, nonatomic, copy) NSString *downloadId;
+@property (nullable, nonatomic, copy) NSString *urlStr;
 @property (nonatomic, assign) downloadState downloadState;
 @property (nonatomic, assign) float progress;
 @end

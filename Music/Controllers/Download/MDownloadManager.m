@@ -15,6 +15,9 @@
     dispatch_queue_t seQueue;
     dispatch_queue_t conQueue;
 }
+@property (nonatomic, strong) AFURLSessionManager *manager;
+@property (nonatomic, strong) NSMutableArray *task;
+
 
 @end
 
@@ -33,15 +36,22 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        
+        /* 创建网络下载对象 */
+        _manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
         
 //        seQueue = dispatch_queue_create("com.beiwai", DISPATCH_QUEUE_SERIAL);
        
-        conQueue = dispatch_queue_create("com.beiwai", DISPATCH_QUEUE_CONCURRENT);
+//        conQueue = dispatch_queue_create("com.beiwai", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;
 }
-
+- (NSMutableArray *)task
+{
+    if (!_task) {
+        _task = [[NSMutableArray alloc] init];
+    }
+    return _task;
+}
 - (NSMutableArray *)downloadIngList
 {
     if (!_downloadIngList) {
@@ -60,14 +70,8 @@
 - (void)addDownloadQueueWithDownloadModel:(DownloadModel *)model
 {
 
-    DefineWeakSelf;
-   
-    dispatch_async(conQueue, ^{
-        // 这里放异步执行任务代码
-        
-        [weakSelf startDownloadWithDownloadModel:model];
-    });
-    
+    [self startDownloadWithDownloadModel:model];
+
 }
 
 - (void)startDownloadWithDownloadModel:(DownloadModel *)model
@@ -75,18 +79,15 @@
     [self.downloadIngList addObject:model];
     
     DefineWeakSelf;
-
-    /* 创建网络下载对象 */
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
     /* 下载地址 */
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:model.filePath]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:model.urlStr]];
     /* 下载路径 */
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/"];
     NSString *filePath = [path stringByAppendingPathComponent:model.name];
     
     /* 开始请求下载 */
-    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSURLSessionDownloadTask *downloadTask = [_manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         
         NSLog(@"下载进度：fileName =%@, %.0f％",model.name, downloadProgress.fractionCompleted * 100);
         model.progress = downloadProgress.fractionCompleted;
@@ -114,6 +115,44 @@
     }];
     [downloadTask resume];
     
+    [self.task addObject:@{@"id":model.name,
+                           @"task":downloadTask
+                           }];
+    
+    
 
+}
+
+- (void)downloadPause:(DownloadModel *)model
+{
+    NSURLSessionDownloadTask *task = [self findCurrentTaskWithModelId:model.name];
+    model.downloadState = downloadState_pause;
+    [task suspend];
+    
+}
+- (void)downloadResume:(DownloadModel *)model
+{
+    NSURLSessionDownloadTask *task = [self findCurrentTaskWithModelId:model.name];
+    
+    if (task) {
+        model.downloadState = downloadState_start;
+        [task resume];
+    }else{
+       
+    }
+    
+    
+    
+}
+
+- (NSURLSessionDownloadTask *)findCurrentTaskWithModelId:(NSString *)dId
+{
+    for (NSDictionary *dic in self.task) {
+        NSString *mId = [dic objectForKey:@"id"];
+        if ([mId isEqual:dId]) {
+            return [dic objectForKey:@"task"];
+        }
+    }
+    return nil;
 }
 @end
