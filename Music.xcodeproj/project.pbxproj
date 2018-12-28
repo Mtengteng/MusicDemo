@@ -17,6 +17,7 @@
 		9E1D262921CCD23400935107 /* ic_pending.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1D262821CCD23400935107 /* ic_pending.png */; };
 		9E1D262B21CCD27400935107 /* bofang.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1D262A21CCD27400935107 /* bofang.png */; };
 		9E1D262D21CCD32A00935107 /* shibai.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1D262C21CCD32A00935107 /* shibai.png */; };
+		9E2D828721D4CB3900FC9080 /* MAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D828621D4CB3900FC9080 /* MAddViewController.m */; };
 		9E45A66E21D37BF60058DA17 /* DownModel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E45A66B21D37BF50058DA17 /* DownModel+CoreDataProperties.m */; };
 		9E45A66F21D37BF60058DA17 /* DownModel+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E45A66D21D37BF60058DA17 /* DownModel+CoreDataClass.m */; };
 		9E45A67321D382230058DA17 /* MCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E45A67221D382230058DA17 /* MCoreDataManager.m */; };
@@ -45,6 +46,8 @@
 		9E1D262821CCD23400935107 /* ic_pending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_pending.png; sourceTree = "<group>"; };
 		9E1D262A21CCD27400935107 /* bofang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bofang.png; sourceTree = "<group>"; };
 		9E1D262C21CCD32A00935107 /* shibai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shibai.png; sourceTree = "<group>"; };
+		9E2D828521D4CB3900FC9080 /* MAddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAddViewController.h; sourceTree = "<group>"; };
+		9E2D828621D4CB3900FC9080 /* MAddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAddViewController.m; sourceTree = "<group>"; };
 		9E45A66A21D37BF50058DA17 /* DownModel+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DownModel+CoreDataClass.h"; path = "/Users/mateng/Desktop/Music/Music/Models/DownloadModel/DownModel+CoreDataClass.h"; sourceTree = "<absolute>"; };
 		9E45A66B21D37BF50058DA17 /* DownModel+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "DownModel+CoreDataProperties.m"; path = "/Users/mateng/Desktop/Music/Music/Models/DownloadModel/DownModel+CoreDataProperties.m"; sourceTree = "<absolute>"; };
 		9E45A66C21D37BF60058DA17 /* DownModel+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DownModel+CoreDataProperties.h"; path = "/Users/mateng/Desktop/Music/Music/Models/DownloadModel/DownModel+CoreDataProperties.h"; sourceTree = "<absolute>"; };
@@ -107,12 +110,12 @@
 		9E1D261321CCC17A00935107 /* DownloadModel */ = {
 			isa = PBXGroup;
 			children = (
-				9E45A66C21D37BF60058DA17 /* DownModel+CoreDataProperties.h */,
-				9E45A66A21D37BF50058DA17 /* DownModel+CoreDataClass.h */,
-				9E45A66D21D37BF60058DA17 /* DownModel+CoreDataClass.m */,
-				9E45A66B21D37BF50058DA17 /* DownModel+CoreDataProperties.m */,
 				9E1D262521CCCFAA00935107 /* DownloadModel.h */,
 				9E1D262621CCCFAA00935107 /* DownloadModel.m */,
+				9E45A66A21D37BF50058DA17 /* DownModel+CoreDataClass.h */,
+				9E45A66D21D37BF60058DA17 /* DownModel+CoreDataClass.m */,
+				9E45A66C21D37BF60058DA17 /* DownModel+CoreDataProperties.h */,
+				9E45A66B21D37BF50058DA17 /* DownModel+CoreDataProperties.m */,
 				9E08834B21CD03BB007F02E6 /* DTableViewCell.h */,
 				9E08834C21CD03BB007F02E6 /* DTableViewCell.m */,
 			);
@@ -201,6 +204,8 @@
 				9EEAE52621BFD20A00C10298 /* Network */,
 				9E6890A721BA5EB800CD92C7 /* MRootViewController.h */,
 				9E6890A821BA5EB800CD92C7 /* MRootViewController.m */,
+				9E2D828521D4CB3900FC9080 /* MAddViewController.h */,
+				9E2D828621D4CB3900FC9080 /* MAddViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 			files = (
 				9E45A67321D382230058DA17 /* MCoreDataManager.m in Sources */,
 				9E6890A921BA5EB800CD92C7 /* MRootViewController.m in Sources */,
+				9E2D828721D4CB3900FC9080 /* MAddViewController.m in Sources */,
 				9E7EC4E921BA41F600BB8276 /* AppDelegate.m in Sources */,
 				9EEAE53421BFD20A00C10298 /* BWBaseReq.m in Sources */,
 				9E1D261C21CCC3B000935107 /* Music.xcdatamodeld in Sources */,

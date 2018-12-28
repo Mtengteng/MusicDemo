@@ -11,12 +11,13 @@
 #import "DownloadModel.h"
 #import "DTableViewCell.h"
 #import "DownModel+CoreDataClass.h"
-#import "AppDelegate.h"
+#import "MAddViewController.h"
 
 @interface MRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     dispatch_queue_t queue;
     MDownloadManager *downloadMan;
+    MCoreDataManager *coreDataMan;
 }
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -39,74 +40,42 @@
 {
     if (!_dataArray) {
         _dataArray = [[NSMutableArray alloc] init];
-        AppDelegate * appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        
-        NSPersistentContainer * container = appDelegate.persistentContainer;
-        NSManagedObjectContext *context = container.viewContext;
-        //创建查询请求
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"DownModel"];
-        //查询条件
-        NSPredicate *pre = [NSPredicate predicateWithFormat:@"downloadState = 0"];
-        request.predicate = pre;
-        
-        // 从第几页开始显示
-        // 通过这个属性实现分页
-        //request.fetchOffset = 0;
-        // 每页显示多少条数据
-        //request.fetchLimit = 6;
-        
-        //发送查询请求
-       _dataArray = [[context executeFetchRequest:request error:nil] copy];
-        
-       
-//        for (NSInteger i = 0; i < 50; i++) {
-//            DownModel *model = [NSEntityDescription  insertNewObjectForEntityForName:@"DownModel"  inManagedObjectContext:container.viewContext];
-//
-////            DownloadModel *model = [[DownloadModel alloc] init];
-//            model.name = [NSString stringWithFormat:@"%ld.mp4",i];
-//            model.urlStr = @"https://media.w3.org/2010/05/sintel/trailer.mp4";
-//            model.progress = 0;
-//            model.downloadState = downloadState_begin;
-//            model.downloadId = [NSString stringWithFormat:@"%ld.mp4",i];
-//
-//            //   3.保存插入的数据
-//            NSError *error = nil;
-//            if ([container.viewContext save:&error]) {
-//                NSLog(@"数据插入到数据库成功");
-//            }else{
-//                NSLog(@"数据插入到数据库失败");
-//
-//            }
-        
-           
-//            [_dataArray addObject:model];
-        }
-    
+    }
     return _dataArray;
 }
 - (instancetype)init
 {
     if (self = [super init]) {
         downloadMan = [MDownloadManager shareInstances];
-       
+        coreDataMan = [MCoreDataManager shareInstances];
     }
     return self;
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    _dataArray = [[coreDataMan queryAllDownloadModel] copy];
+    [_tableView reloadData];
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    rightBtn.frame = CGRectMake(SCREEN_WIDTH - ADAPTATION_X(20), 0,70, 30);
-//    [rightBtn setTitle:@"已完成" forState:UIControlStateNormal];
-//    [rightBtn setTitleColor:BWColor(92, 164, 236, 1) forState:UIControlStateNormal];
-//    rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-//    [rightBtn addTarget:self action:@selector(gotoMyDownload:) forControlEvents:UIControlEventTouchUpInside];
-//    rightBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
-//
-//    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-//    self.navigationItem.rightBarButtonItem = rightBar;
+    self.title = @"下载列表";
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightBtn.frame = CGRectMake(SCREEN_WIDTH - ADAPTATION_X(20), 0,70, 30);
+    [rightBtn setTitle:@"+" forState:UIControlStateNormal];
+    [rightBtn setTitleColor:BWColor(92, 164, 236, 1) forState:UIControlStateNormal];
+    rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [rightBtn addTarget:self action:@selector(addData:) forControlEvents:UIControlEventTouchUpInside];
+    rightBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
+
+    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    self.navigationItem.rightBarButtonItem = rightBar;
     
     [self.view addSubview:self.tableView];
 
@@ -114,6 +83,33 @@
         make.edges.equalTo(self.view);
     }];
 
+}
+- (void)addData:(id)sender
+{
+//    for (NSInteger i = 0; i < 10; i++) {
+//        DownloadModel *model = [[DownloadModel alloc] init];
+//        model.name = [NSString stringWithFormat:@"%ld.mp3",i];
+//        model.downloadId = [NSString stringWithFormat:@"d1000_%ld",i];
+//        model.urlStr = @"http://streamoc.music.tc.qq.com/M500001KxFBr3ZrMIk.mp3?guid=4937972180&vkey=EFCEEF8D81C3AA09046B0A9C97BFA82F7F6B7C3EC782C542FCD358B34597797E8ED50F221CCC2C15560F0DC7BD608DB97D1037E496809F51&uin=0&fromtag=8";
+//        model.downloadState = downloadState_begin;
+//        model.progress = 0;
+//        [[MCoreDataManager shareInstances] insertDBWithModel:model];
+//
+//    }
+//
+//    _dataArray = [[[MCoreDataManager shareInstances] queryAllDownloadModel] copy];
+//    [_tableView reloadData];
+    
+    MAddViewController *addCtrl = [[MAddViewController alloc] init];
+    [self.navigationController pushViewController:addCtrl animated:YES];
+    DefineWeakSelf;
+    addCtrl.addBlock = ^(DownloadModel * _Nonnull model) {
+        
+        [[MCoreDataManager shareInstances] insertDBWithModel:model];
+        [weakSelf.tableView reloadData];
+
+    };
+    
 }
 - (void)downloadAction:(NSIndexPath *)indexPath
 {
@@ -127,7 +123,7 @@
         for (NSInteger i = 0; i<weakSelf.dataArray.count;i++) {
             DownloadModel *allModel = weakSelf.dataArray[i];
             
-            if ([allModel.name isEqualToString:model.name]) {
+            if ([allModel.downloadId isEqualToString:model.downloadId]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
                     DTableViewCell *cell = [weakSelf.tableView cellForRowAtIndexPath:path];

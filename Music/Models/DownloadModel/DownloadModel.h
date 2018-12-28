@@ -20,6 +20,8 @@ typedef enum downloadState
     
 }downloadState;
 
+@class DownModel;
+
 @interface DownloadModel : NSObject
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *filePath;
@@ -27,6 +29,10 @@ typedef enum downloadState
 @property (nullable, nonatomic, copy) NSString *urlStr;
 @property (nonatomic, assign) downloadState downloadState;
 @property (nonatomic, assign) float progress;
+
+- (void)assignDownModelInfo:(DownModel **)downModel;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

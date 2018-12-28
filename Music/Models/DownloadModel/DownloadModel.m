@@ -7,7 +7,17 @@
 //
 
 #import "DownloadModel.h"
+#import "DownModel+CoreDataClass.h"
 
 @implementation DownloadModel
 
+- (void)assignDownModelInfo:(DownModel *__autoreleasing *)downModel
+{
+    DownModel *infoModel = *downModel;
+    infoModel.name = _name;
+    infoModel.urlStr = _urlStr;
+    infoModel.progress = _progress;
+    infoModel.downloadState = _downloadState;
+    infoModel.downloadId = _downloadId;
+}
 @end

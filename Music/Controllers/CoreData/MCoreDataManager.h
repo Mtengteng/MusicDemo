@@ -8,11 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
+@class DownModel;
+@class DownloadModel;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MCoreDataManager : NSObject
 
-- (instancetype)init;
++ (MCoreDataManager *)shareInstances;
+
+- (BOOL)insertDBWithModel:(DownloadModel *)model;
+
+- (BOOL)updateDBWithModel:(DownloadModel *)model;
+
+- (BOOL)deleteDBWithModel:(DownloadModel *)model;
+
+- (BOOL)deleteAll;
+
+- (NSArray *)queryAllDownloadModel;
 
 
 @end

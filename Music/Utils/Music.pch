@@ -15,5 +15,7 @@
 #import "UIImageView+WebCache.h"
 #import "MusicConfig.h"
 #import "NetHeader.h"
+#import "MCoreDataManager.h"
+#import "AppDelegate.h"
 
 #endif /* Music_pch */

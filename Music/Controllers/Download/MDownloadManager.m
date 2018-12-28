@@ -18,6 +18,7 @@
 @property (nonatomic, strong) AFURLSessionManager *manager;
 @property (nonatomic, strong) NSMutableArray *task;
 
+- (void)updateDownloadTaskStateWithModel:(DownloadModel *)model;
 
 @end
 
@@ -84,16 +85,17 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:model.urlStr]];
     /* 下载路径 */
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/"];
-    NSString *filePath = [path stringByAppendingPathComponent:model.name];
+    NSString *filePath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3",model.downloadId]];
     
     /* 开始请求下载 */
     NSURLSessionDownloadTask *downloadTask = [_manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         
-        NSLog(@"下载进度：fileName =%@, %.0f％",model.name, downloadProgress.fractionCompleted * 100);
+        NSLog(@"下载进度：fileName =%@, %.0f％",model.downloadId, downloadProgress.fractionCompleted * 100);
         model.progress = downloadProgress.fractionCompleted;
-        model.downloadState = downloadState_start;
+//        model.downloadState = downloadState_start;
         weakSelf.downloadPro(model);
         
+
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         dispatch_async(dispatch_get_main_queue(), ^{
             //如果需要进行UI操作，需要获取主线程进行操作
@@ -108,15 +110,29 @@
         [weakSelf.downloadIngList removeObject:model];
         [weakSelf.downloadFinishList addObject:model];
         
-        model.downloadState = downloadState_finished;
-        
         weakSelf.downloadFinised(model);
+        
+        NSMutableArray *array = [NSMutableArray array];
+        [array addObjectsFromArray:weakSelf.task];
+
+        for (NSDictionary *json in array) {
+            NSString *dId = [json objectForKey:@"downloadId"];
+            if ([dId isEqualToString:model.downloadId]) {
+                [weakSelf.task removeObject:json];
+            }
+        }
+        [self updateDownloadTaskStateWithModel:model];
+
+        
         
     }];
     [downloadTask resume];
     
-    [self.task addObject:@{@"id":model.name,
-                           @"task":downloadTask
+    [self updateDownloadTaskStateWithModel:model];
+
+    
+    [self.task addObject:@{@"id":[NSNumber numberWithInteger:downloadTask.taskIdentifier],
+                           @"downloadId":model.downloadId
                            }];
     
     
@@ -125,34 +141,73 @@
 
 - (void)downloadPause:(DownloadModel *)model
 {
-    NSURLSessionDownloadTask *task = [self findCurrentTaskWithModelId:model.name];
-    model.downloadState = downloadState_pause;
+
+    NSURLSessionDownloadTask *task = [self findCurrentTaskWithModelId:model.downloadId];
+//    model.downloadState = downloadState_pause;
     [task suspend];
+    [self updateDownloadTaskStateWithModel:model];
+
     
 }
 - (void)downloadResume:(DownloadModel *)model
 {
-    NSURLSessionDownloadTask *task = [self findCurrentTaskWithModelId:model.name];
-    
+    NSURLSessionDownloadTask *task = [self findCurrentTaskWithModelId:model.downloadId];
+
     if (task) {
-        model.downloadState = downloadState_start;
+//        model.downloadState = downloadState_start;
         [task resume];
+        [self updateDownloadTaskStateWithModel:model];
+
     }else{
-       
+
     }
-    
-    
     
 }
 
-- (NSURLSessionDownloadTask *)findCurrentTaskWithModelId:(NSString *)dId
+- (NSURLSessionDownloadTask *)findCurrentTaskWithModelId:(NSString *)downloadId
 {
     for (NSDictionary *dic in self.task) {
-        NSString *mId = [dic objectForKey:@"id"];
-        if ([mId isEqual:dId]) {
-            return [dic objectForKey:@"task"];
+        NSString *taskDownloadId = [dic objectForKey:@"downloadId"];
+        
+        if ([downloadId isEqualToString:taskDownloadId]) {
+            NSNumber *taskId = [dic objectForKey:@"id"];
+
+            for (NSURLSessionDownloadTask *currentTask in _manager.downloadTasks) {
+                if (currentTask.taskIdentifier == taskId.integerValue) {
+                    return currentTask;
+                }
+            }
         }
     }
+    
     return nil;
+}
+
+- (void)updateDownloadTaskStateWithModel:(DownloadModel *)model
+{
+
+    NSURLSessionDownloadTask *downloadTask = [self findCurrentTaskWithModelId:model.downloadId];
+    switch (downloadTask.state) {
+        case NSURLSessionTaskStateRunning:
+            model.downloadState = downloadState_start;
+            break;
+        case NSURLSessionTaskStateSuspended:
+            model.downloadState = downloadState_pause;
+
+            break;
+        case NSURLSessionTaskStateCanceling:
+            model.downloadState = downloadState_failed;
+
+            break;
+        case NSURLSessionTaskStateCompleted:
+            model.downloadState = downloadState_finished;
+            break;
+            
+        default:
+            model.downloadState = downloadState_wait;
+            break;
+    }
+    
+    
 }
 @end
